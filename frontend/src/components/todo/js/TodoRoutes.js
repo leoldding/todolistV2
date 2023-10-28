@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { Routes, Route, Navigate } from "react-router-dom";
-import TodoLogin from "./TodoLogin";
-import TodoUser from "./TodoUser";
+import TodoLogin from "./login/Login";
+import TodoUser from "./lists/Users";
 
 function TodoRoutes() {
     // set index elements
@@ -11,8 +11,6 @@ function TodoRoutes() {
 
         let apple_icon = document.getElementById("apple_icon")
         // apple_icon.href = process.env.PUBLIC_URL + ""
-
-        // document.body.className = "";
     }, []);
 
     return (

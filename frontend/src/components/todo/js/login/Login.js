@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { login } from "./api";
+import { login } from "../api";
 
 function TodoLogin() {
     const [username, setUsername] = useState("");
