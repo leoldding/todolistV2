@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
 import { Routes, Route, Navigate } from "react-router-dom";
-import TodoLogin from "./login/Login";
+import TodoLogin from "./account/Login";
+import TodoRegister from "./account/Register";
 import TodoUser from "./lists/Users";
 
 function TodoRoutes() {
@@ -17,6 +18,7 @@ function TodoRoutes() {
         <div className={"h-screen"}>
             <Routes>
                 <Route path={""} element={<TodoLogin /> }/>
+                <Route path={"/register"} element={<TodoRegister /> }/>
                 <Route path={"/user/*"} element={<TodoUser />} />
                 <Route path={"*"} element={<Navigate to="" replace />} />
             </Routes>

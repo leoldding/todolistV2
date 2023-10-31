@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 import { login } from "../api";
 
 function TodoLogin() {
@@ -6,33 +7,38 @@ function TodoLogin() {
     const [password, setPassword] = useState("");
     const [usernameError, setUsernameError] = useState("");
     const [passwordError, setPasswordError] = useState("");
+    const [remember, setRemember] = useState(false);
 
     // set document title
     useEffect(() => {
         document.title = "Leo Ding - Todo Login";
     }, []);
 
+    const textValid = (text) => {
+        return /^[a-z0-9_.]+$/.exec(text);
+    }
+
     const submitLogin = (event) => {
         event.preventDefault();
 
-        let empty = false;
-
-        if (password === "") {
-            setPasswordError("Required");
-            empty = true;
-        } else {
-            setPasswordError("");
-        }
+        let viable = true;
 
         if (username === "") {
             setUsernameError("Required");
-            empty = true;
+            viable = false;
         } else {
             setUsernameError("");
         }
 
-        if (!empty) {
-            login(username.trim(), password.trim())
+        if (password === "") {
+            setPasswordError("Required");
+            viable = false;
+        } else {
+            setPasswordError("");
+        }
+
+        if (viable) {
+            login(username, password, remember)
                 .then((res) => {
                     window.location.assign(window.location.protocol + "//" + window.location.host + "/user/" + username);
                     setUsername("");
@@ -68,8 +74,13 @@ function TodoLogin() {
                            onChange={(event) => setPassword(event.target.value)}/>
                     <div>{passwordError}</div>
                 </div>
-                <button>Login</button>
+                <div>
+                    <div>Remember Me</div>
+                    <input type={"checkbox"} onChange={(event) => setRemember(event.target.checked)}/>
+                </div>
+                <button>Sign In</button>
             </form>
+            <Link to={"/register"}>Sign Up</Link>
         </div>
     )
 }
