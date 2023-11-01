@@ -26,12 +26,18 @@ function TodoLogin() {
         if (username === "") {
             setUsernameError("Required");
             viable = false;
+        } else if (!textValid(username)) {
+            setUsernameError("Invalid User")
+            viable = false;
         } else {
             setUsernameError("");
         }
 
         if (password === "") {
             setPasswordError("Required");
+            viable = false;
+        } else if (!textValid(password)) {
+            setPasswordError("Incorrect Password")
             viable = false;
         } else {
             setPasswordError("");

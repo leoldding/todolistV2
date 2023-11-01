@@ -8,10 +8,10 @@ function TodoRoutes() {
     // set index elements
     useEffect(() => {
         let icon = document.getElementById("icon")
-        // icon.href = process.env.PUBLIC_URL + ""
+        icon.href = process.env.PUBLIC_URL + "list_icon.png"
 
         let apple_icon = document.getElementById("apple_icon")
-        // apple_icon.href = process.env.PUBLIC_URL + ""
+        apple_icon.href = process.env.PUBLIC_URL + "list_icon.png"
     }, []);
 
     return (

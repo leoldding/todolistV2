@@ -57,7 +57,7 @@ function TodoRegister() {
         if (viable) {
             register(username, password)
                 .then((res) => {
-                    window.location.assign(window.location.protocol + "//" + window.location.host + "/user/" + username);
+                    window.location.assign(window.location.protocol + "//" + window.location.host);
                     setUsername("");
                     setPassword("");
                     setPasswordConfirm("");
