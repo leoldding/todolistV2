@@ -13,6 +13,10 @@ func main() {
 
 	todo.DatabaseInitialize()
 
+	http.HandleFunc("/todoLogin", todo.Login)
+	http.HandleFunc("/todoRegister", todo.Register)
+	http.HandleFunc("/todoCheckSession", todo.CheckSession)
+
 	http.ListenAndServe(":8080", nil)
 	return
 }

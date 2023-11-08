@@ -19,7 +19,7 @@ func ConnectToPostgres() {
 	// connect to Postgres database
 	Postgres, err = sql.Open("postgres", psqlInfo)
 	if err != nil {
-		log.Printf("Error connecting to Postgres database: %v", err)
+		log.Printf("Error connecting to Postgres database\nERROR: %v", err)
 	} else {
 		log.Printf("Succcessful connection to Postgres database.")
 	}
