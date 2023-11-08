@@ -11,7 +11,7 @@ export const login = (username, password, remember) => {
                 return null
             } else if (res.status === 400) {
                 throw new Error("Invalid User")
-            } else {
+            } else if (res.status === 401) {
                 throw new Error("Incorrect Password")
             }
         })
@@ -27,6 +27,17 @@ export const register = (username, password) => {
                 return null
             } else if (res.status === 400) {
                 throw new Error("User Exists Already")
+            }
+        })
+}
+
+export const checkSession = () => {
+    return Axios.get('/backend/todoCheckSession')
+        .then((res) => {
+            if (res.status === 200) {
+                return res
+            } else {
+                throw new Error("Unauthorized User")
             }
         })
 }

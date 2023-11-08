@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { login } from "../api";
 
-function TodoLogin() {
+function TodoLogin(props) {
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
     const [usernameError, setUsernameError] = useState("");
@@ -45,14 +45,16 @@ function TodoLogin() {
 
         if (viable) {
             login(username, password, remember)
-                .then((res) => {
-                    window.location.assign(window.location.protocol + "//" + window.location.host + "/user/" + username);
+                .then(() => {
+                    props.setUsername(username);
+                    props.setLoggedIn(true);
                     setUsername("");
                     setPassword("");
                     setUsernameError("");
                     setPasswordError("");
                 })
                 .catch((err) => {
+                    props.setLoggedIn(false);
                     if (err.response.status === 400) {
                         setUsernameError("Invalid User")
                         setPasswordError("")

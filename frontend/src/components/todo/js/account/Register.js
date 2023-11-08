@@ -1,5 +1,5 @@
-import React, {useEffect, useState} from "react";
-import {Link} from "react-router-dom";
+import React, { useEffect, useState } from "react";
+import { Link, Navigate } from "react-router-dom";
 import { register } from "../api";
 
 function TodoRegister() {
@@ -9,6 +9,7 @@ function TodoRegister() {
     const [usernameError, setUsernameError] = useState("");
     const [passwordError, setPasswordError] = useState("");
     const [passwordConfirmError, setPasswordConfirmError] = useState("");
+    const [registered, setRegistered] = useState(false);
 
     // set document title
     useEffect(() => {
@@ -56,8 +57,8 @@ function TodoRegister() {
 
         if (viable) {
             register(username, password)
-                .then((res) => {
-                    window.location.assign(window.location.protocol + "//" + window.location.host);
+                .then(() => {
+                    setRegistered(true);
                     setUsername("");
                     setPassword("");
                     setPasswordConfirm("");
@@ -100,6 +101,7 @@ function TodoRegister() {
                 <button>Sign Up</button>
             </form>
             <Link to={"/"}>Sign In</Link>
+            { registered ? <Navigate to={"/"} replace /> : null }
         </div>
     )
 }
