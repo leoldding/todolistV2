@@ -31,11 +31,11 @@ function TodoRoutes() {
     })
 
     return (
-        <div className={"h-screen"}>
+        <div className={"h-screen w-screen"}>
             <Routes>
                 <Route path={"login"} element={!loggedIn ? <TodoLogin setLoggedIn={setLoggedIn} setUsername={setUsername}/> : <Navigate to={"/user/"+username} /> }/>
                 <Route path={"register"} element={!loggedIn ? <TodoRegister /> : <Navigate to={"/user/"+username} /> }/>
-                <Route path={"user/:username"} element={loggedIn ? <TodoUser /> : <Navigate to={"/login"} /> }/>
+                <Route path={"user/:username"} element={loggedIn ? <TodoUser setLoggedIn={setLoggedIn}/> : <Navigate to={"/login"} /> }/>
                 <Route path={"*"} element={<Navigate to={"/login"} replace />} />
             </Routes>
         </div>
